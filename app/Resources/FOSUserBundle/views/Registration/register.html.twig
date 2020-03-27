@@ -1,0 +1,42 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% block bodydef %}<body class="sign-in" oncontextmenu="return false;">{% endblock %}
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Signika:300,400,600,700" rel="stylesheet">
+
+    <!-- icon -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset ('template/fonts/icons/fontawesome/css/font-awesome.min.css') }}"/>
+
+    <link rel="stylesheet" href="{{ asset ('template/fonts/icons/sharehub/style.css') }}"/>
+
+    <!-- Vendor -->
+    <!-- Custom -->
+    <link rel="stylesheet" href="{{ asset ('template/vendor/magnificPopup/dist/magnific-popup.css') }}" type="text/css" />
+    <link href="{{ asset ('template/css/style.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset ('template/css/cs/animate.css')}}">
+    {#<link rel="stylesheet" type="text/css" href="{{ asset ('template/css/cs/bootstrap.min.css')}}">#}
+    <link rel="stylesheet" type="text/css" href="{{ asset ('template/css/cs/line-awesome.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('template/css/cs/line-awesome-font-awesome.min.css')}}">
+
+    <link href="{{ asset ('template/css/cs/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('template/css/cs/jquery.mCustomScrollbar.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('template/css/cs/slick.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('template/css/cs/slick-theme.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('template/css/cs/responsive.css')}}">
+{% endblock %}
+{% block header %}{% endblock %}
+{% block container %}
+{% include "@FOSUser/Registration/register_content.html.twig" %}
+{% endblock  %}
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset ('template/js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset ('template/js/popper.js')}}"></script>
+<script type="text/javascript" src="{{ asset ('template/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset ('template/js/jquery.mCustomScrollbar.js')}}"></script>
+<script type="text/javascript" src="{{ asset ('template/lib/slick/slick.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset ('template/js/scrollbar.js')}}"></script>
+<script type="text/javascript" src="{{ asset ('template/js/script.js')}}"></script>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<script data-main="js/app" src="{{ asset ('template/vendor/require/require.js') }}"></script>
+{% endblock %}

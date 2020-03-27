@@ -1,0 +1,53 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+<main>
+    <div class="container">
+        <!--sections-->
+        <div class="row"   >
+
+
+                <div class="sh-login">
+                    <div class="sh-login__logo"><a href="index.php" class="sh-logo"><img src="{{ asset ('template/fonts/icons/sharehub/svg/Sharehub.svg')}}" alt=""></a></div>
+                    <div class="sh-login__content">
+                        <p>Sign in  Talentaholic</p>
+                        <div class="dff-tab current" id="tab-3">
+                            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+                                <div class="col-lg-12 no-pdd">
+                                    <div class="sh-login__form">
+                                        {{ form_row(form.email, {'attr':{'placeholder': "Email"}}) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 no-pdd">
+                                    <div class="sh-login__form">
+                                        {{ form_row(form.username, {'attr':{'placeholder': "Username"}}) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 no-pdd">
+                                    <div class="sh-login__form">
+                                        {{ form_row(form.plainPassword, {'attr':{'placeholder': "Password"}}) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 no-pdd">
+                                    <div class="sh-login__form">
+                                        {{ form_row(form.plainPassword, {'attr':{'placeholder': "Repeat Password"}}) }}
+                                    </div>
+                                </div>
+                            <div class="sh-login__send">
+                                    <a href="/login" title="">Already Have An Account?</a>
+                                    <button  class="sh-btn">{{ 'registration.submit'|trans }} </button><br>
+
+                                </div>
+
+                            {{ form_end(form) }}
+                        </div><!--dff-tab end-->
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+</main>
+

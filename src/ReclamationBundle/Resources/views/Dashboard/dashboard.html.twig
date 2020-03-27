@@ -1,0 +1,119 @@
+{% extends 'admin.html.twig' %}
+{% block body %}
+    <section class="content home">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <h2>Dashboard
+                        <small>Welcome to Talentaholic</small>
+                    </h2>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                    <div class="inlineblock text-center m-r-15 m-l-15 hidden-md-down">
+                        <div class="sparkline" data-type="bar" data-width="97%" data-height="25px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#fff">3,2,6,5,9,8,7,9,5,1,3,5,7,4,6</div>
+                        <small class="col-white">Visitors</small>
+                    </div>
+                    <div class="inlineblock text-center m-r-15 m-l-15 hidden-md-down">
+                        <div class="sparkline" data-type="bar" data-width="97%" data-height="25px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#fff">1,3,5,7,4,6,3,2,6,5,9,8,7,9,5</div>
+
+                    </div>
+                    <button class="btn btn-white btn-icon btn-round hidden-sm-down float-right m-l-10" type="button">
+                        <i class="zmdi zmdi-plus"></i>
+                    </button>
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Talentaholic</a></li>
+                        <li class="breadcrumb-item active">Reclamations</li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="body table-responsive members_profiles">
+                            <input type="text" class="form-control" placeholder="Search Type ..." id="searchrec">
+                            <div class="nav nav-second-level" id="entitiesNav"></div>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th style="width:60px;">Utilisateur</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Repondre</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for r in reclamations %}
+                                    <tr>
+                                        <td>{{ r.user.username }}</td>
+                                        <td>{{ r.type }}</td>
+                                        <td>{{ r.dateCreation | date }}</td>
+                                        {% if r.status==0 %}
+                                            <td>Non traité</td>
+                                            <td><a href="{{ path('traiter',{'id':r.id}) }}">Répondre</a></td>
+                                        {% else %}
+                                            <td>Traité</td>
+                                            <td><a href="{{ path('traiter',{'id':r.id}) }}">Voir</a></td>
+                                        {% endif %}
+                                        <td><a href="{{ path('delete',{'id':r.id}) }}">Supprimer</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!--<input type="text" class="form-control" placeholder="Search...",id="rechercherrec">
+                            <a id="clickHere" href="#">click here for test</a>-->
+                        </div>
+                    </div>
+                    <a href="{{ path('tri')}}">Trier les Reclamations</a>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                var searchRequest = null;
+                $("#searchrec").keyup(function() {
+                    var minlength = 0;
+                    var that = this;
+                    var value = $(this).val();
+                    var entitySelector = $("#entitiesNav").html('');
+                    if (value.length >= minlength ) {
+                        if (searchRequest != null)
+                            searchRequest.abort();
+                        searchRequest = $.ajax({
+                            type: "GET",
+                            url: "{{ path('ajax_search') }}",
+                            data: {
+                                'q' : value
+                            },
+                            dataType: "text",
+                            success: function(msg){
+                                //we need to check if the value is the same
+                                if (value===$(that).val()) {
+                                    var result = JSON.parse(msg);
+                                    $.each(result, function(key, arr) {
+                                        $.each(arr, function(id, value) {
+                                            if (key === 'entities') {
+                                                if (id !== 'error') {
+                                                    entitySelector.append('<li><a href="/repondre/'+id+'">Visualiser</a></li></br>');
+                                                } else {
+                                                    entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+    </section>
+{% endblock %}
