@@ -1,0 +1,33 @@
+publication_commentaire:
+    resource: "@PublicationBundle/Controller/CommentaireController.php"
+    type:     annotation
+
+publication_commentaire:
+    resource: "@PublicationBundle/Controller/CommentaireController.php"
+    type:     annotation
+
+publication_publication:
+    resource: "@PublicationBundle/Controller/PublicationController.php"
+    type:     annotation
+
+publcation:
+    resource: "@PublcationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+publication:
+    resource: "@PublicationBundle/Resources/config/routing.xml"
+    prefix:   /
+
+eventevenement:
+    resource: "@EventevenementBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos:
+    resource: "@FOSBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+

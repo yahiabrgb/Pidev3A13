@@ -1,0 +1,19 @@
+publication_homepage:
+    path:     /
+    defaults: { _controller: PublicationBundle:Default:index }
+
+publication_index:
+    path:     /acceuil/
+    defaults: { _controller: PublicationBundle:Publication:acceuil }
+publication_new:
+    path:     /add1/
+    defaults: { _controller: PublicationBundle:Publication:add }
+publication_show:
+    path:     /show{id}
+    defaults: { _controller: PublicationBundle:Publication:show }
+publication_edit:
+    path:     /edit{id}
+    defaults: { _controller: PublicationBundle:Publication:edit }
+publication_delete:
+    path:     /delete{id}
+    defaults: { _controller: PublicationBundle:Publication:delete }
